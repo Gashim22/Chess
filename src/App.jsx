@@ -1017,7 +1017,7 @@ function LearnMode({ opening, variation, positions, onComplete, theme: T }) {
       </div>
 
       {/* Доска */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="board-center">
         <Board
           board={pos.board}
           flipped={flipped}
@@ -1043,7 +1043,7 @@ function LearnMode({ opening, variation, positions, onComplete, theme: T }) {
       </div>
 
       {/* Кнопки навигации */}
-      <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+      <div className="nav-btns">
         {[
           { label: "⏮", action: () => setStep(0), disabled: step === 0 },
           { label: "◀", action: () => setStep(s => Math.max(0, s - 1)), disabled: step === 0 },
@@ -1062,7 +1062,7 @@ function LearnMode({ opening, variation, positions, onComplete, theme: T }) {
 
       {/* Список ходов */}
       <div style={{ background: T.card2, borderRadius: 10, padding: "10px 12px", maxHeight: 160, overflowY: "auto" }}>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+        <div className="move-list">
           {variation.moves.map((m, i) => (
             <button key={i} onClick={() => setStep(i + 1)} style={{
               padding: "3px 8px", borderRadius: 6, border: "none",
@@ -1190,7 +1190,7 @@ function PracticeMode({ opening, variation, positions, onComplete, theme: T }) {
       </div>
 
       {/* Доска */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="board-center">
         <Board
           board={pos.board}
           flipped={flipped}
@@ -1202,7 +1202,7 @@ function PracticeMode({ opening, variation, positions, onComplete, theme: T }) {
       </div>
 
       {/* Кнопки */}
-      <div style={{ display: "flex", gap: 8 }}>
+      <div className="practice-btns">
         <button onClick={hint} disabled={done || !isPlayerTurn} style={{
           flex: 1, padding: "10px 0", borderRadius: 8, border: "none",
           background: T.btn, color: T.text, cursor: "pointer", fontSize: 14,
@@ -1215,7 +1215,7 @@ function PracticeMode({ opening, variation, positions, onComplete, theme: T }) {
 
       {/* Финал */}
       {done && (
-        <div style={{ display: "flex", gap: 8 }}>
+        <div className="practice-final-btns">
           <button onClick={reset} style={{
             flex: 1, padding: "12px 0", borderRadius: 10, border: "none",
             background: T.btn, color: T.text, fontSize: 15, cursor: "pointer",
@@ -1261,13 +1261,13 @@ function QuizMode({ variation, opening, onComplete, theme: T }) {
     const s = score, total = questions.length;
     const emoji = s === total ? "🏆" : s >= 2 ? "🎓" : "📚";
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", padding: "20px 0" }}>
+      <div className="quiz-finals">
         <div style={{ fontSize: 64 }}>{emoji}</div>
         <div style={{ fontSize: 28, fontWeight: 700, color: T.text }}>{s}/{total}</div>
         <div style={{ color: T.sub, fontSize: 16 }}>
           {s === total ? "Идеально!" : s >= 2 ? "Хорошо, повтори ещё раз" : "Нужно повторить теорию"}
         </div>
-        <div style={{ display: "flex", gap: 10, marginTop: 8 }}>
+        <div className="quiz-final-btns">
           <button onClick={reset} style={{
             padding: "11px 24px", borderRadius: 10, border: "none",
             background: T.btn, color: T.text, fontSize: 15, cursor: "pointer",
@@ -1302,7 +1302,7 @@ function QuizMode({ variation, opening, onComplete, theme: T }) {
       }}>{q.q}</div>
 
       {/* Варианты */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="quiz-opts">
         {q.opts.map((opt, i) => {
           const isCorrect = i === q.ans;
           const isPicked  = i === chosen;
@@ -1374,9 +1374,9 @@ function OpeningDetail({ opening, progress, onProgress, onBack, theme: T }) {
   ];
 
   return (
-    <div style={{ maxWidth: 520, margin: "0 auto", padding: "0 14px 32px" }}>
-      {/* Шапка */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "16px 0 12px" }}>
+    <div className="detail-wrap">
+      {/* Шапка — полная ширина */}
+      <div className="detail-header">
         <button onClick={onBack} style={{
           background: T.btn, border: "none", borderRadius: 8,
           padding: "8px 12px", color: T.text, cursor: "pointer", fontSize: 15, flexShrink: 0,
@@ -1395,72 +1395,79 @@ function OpeningDetail({ opening, progress, onProgress, onBack, theme: T }) {
         </div>
       </div>
 
-      {/* Идея дебюта */}
-      {opening.idea && (
-        <div style={{
-          background: T.card2, borderRadius: 10, padding: "12px 14px",
-          marginBottom: 14, borderLeft: `3px solid ${opening.color}`,
-        }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: opening.color, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>Главная идея</div>
-          <div style={{ color: T.text, fontSize: 13, lineHeight: 1.6 }}>{opening.idea}</div>
-        </div>
-      )}
+      {/* Двухколоночный макет на десктопе */}
+      <div className="detail-body">
 
-      {/* Список вариантов */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 16 }}>
-        {opening.variations.map(v => {
-          const vvp = getVP(progress, opening.id, v.id);
-          const stars = [vvp.l, vvp.p, vvp.q].filter(Boolean).length;
-          return (
-            <button key={v.id} onClick={() => { setSelVar(v.id); setTab("learn"); }} style={{
-              background: selVar === v.id ? T.accent + "22" : T.card2,
-              border: `1.5px solid ${selVar === v.id ? T.accent : T.border}`,
-              borderRadius: 10, padding: "10px 14px",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              cursor: "pointer", color: T.text,
+        {/* ── Левая колонка: идея + варианты ── */}
+        <div className="detail-sidebar">
+          {opening.idea && (
+            <div style={{
+              background: T.card2, borderRadius: 10, padding: "12px 14px",
+              marginBottom: 14, borderLeft: `3px solid ${opening.color}`,
             }}>
-              <div style={{ textAlign: "left" }}>
-                <div style={{ fontWeight: 600, fontSize: 14 }}>{v.name}</div>
-                <div style={{ color: T.sub, fontSize: 12 }}>{v.eco}</div>
-              </div>
-              <div style={{ fontSize: 16 }}>{"⭐".repeat(stars)}{"☆".repeat(3 - stars)}</div>
-            </button>
-          );
-        })}
-      </div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: opening.color, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>Главная идея</div>
+              <div style={{ color: T.text, fontSize: 13, lineHeight: 1.6 }}>{opening.idea}</div>
+            </div>
+          )}
 
-      {/* Табы */}
-      <div style={{ display: "flex", gap: 4, marginBottom: 16 }}>
-        {TABS.map(tb => (
-          <button key={tb.id} onClick={() => setTab(tb.id)} style={{
-            flex: 1, padding: "9px 4px", borderRadius: 8, border: "none",
-            background: tab === tb.id ? T.accent : T.btn,
-            color: tab === tb.id ? "#fff" : T.sub,
-            cursor: "pointer", fontSize: 13, fontWeight: tab === tb.id ? 700 : 400,
-          }}>{tb.label}</button>
-        ))}
-      </div>
+          <div className="var-list">
+            {opening.variations.map(v => {
+              const vvp = getVP(progress, opening.id, v.id);
+              const stars = [vvp.l, vvp.p, vvp.q].filter(Boolean).length;
+              return (
+                <button key={v.id} onClick={() => { setSelVar(v.id); setTab("learn"); }} style={{
+                  background: selVar === v.id ? T.accent + "22" : T.card2,
+                  border: `1.5px solid ${selVar === v.id ? T.accent : T.border}`,
+                  borderRadius: 10, padding: "10px 14px",
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  cursor: "pointer", color: T.text, width: "100%",
+                }}>
+                  <div style={{ textAlign: "left" }}>
+                    <div style={{ fontWeight: 600, fontSize: 14 }}>{v.name}</div>
+                    <div style={{ color: T.sub, fontSize: 12 }}>{v.eco}</div>
+                  </div>
+                  <div style={{ fontSize: 16 }}>{"⭐".repeat(stars)}{"☆".repeat(3 - stars)}</div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
-      {/* Контент таба */}
-      <div key={selVar + tab}>
-        {tab === "learn" && (
-          <LearnMode
-            opening={opening} variation={variation} positions={positions}
-            onComplete={() => handleComplete("learn")} theme={T}
-          />
-        )}
-        {tab === "practice" && (
-          <PracticeMode
-            opening={opening} variation={variation} positions={positions}
-            onComplete={() => handleComplete("practice")} theme={T}
-          />
-        )}
-        {tab === "quiz" && (
-          <QuizMode
-            variation={variation} opening={opening}
-            onComplete={() => handleComplete("quiz")} theme={T}
-          />
-        )}
+        {/* ── Правая колонка: табы + контент ── */}
+        <div className="detail-main">
+          <div className="detail-tabs">
+            {TABS.map(tb => (
+              <button key={tb.id} onClick={() => setTab(tb.id)} style={{
+                flex: 1, padding: "9px 4px", borderRadius: 8, border: "none",
+                background: tab === tb.id ? T.accent : T.btn,
+                color: tab === tb.id ? "#fff" : T.sub,
+                cursor: "pointer", fontSize: 13, fontWeight: tab === tb.id ? 700 : 400,
+              }}>{tb.label}</button>
+            ))}
+          </div>
+
+          <div key={selVar + tab}>
+            {tab === "learn" && (
+              <LearnMode
+                opening={opening} variation={variation} positions={positions}
+                onComplete={() => handleComplete("learn")} theme={T}
+              />
+            )}
+            {tab === "practice" && (
+              <PracticeMode
+                opening={opening} variation={variation} positions={positions}
+                onComplete={() => handleComplete("practice")} theme={T}
+              />
+            )}
+            {tab === "quiz" && (
+              <QuizMode
+                variation={variation} opening={opening}
+                onComplete={() => handleComplete("quiz")} theme={T}
+              />
+            )}
+          </div>
+        </div>
+
       </div>
     </div>
   );
@@ -1478,7 +1485,7 @@ function Home({ progress, onSelect, theme: T }) {
   const pct = totalVars > 0 ? Math.round((doneVars / totalVars) * 100) : 0;
 
   return (
-    <div style={{ maxWidth: 520, margin: "0 auto", padding: "0 14px 32px" }}>
+    <div style={{ maxWidth: 980, margin: "0 auto", padding: "0 14px 32px" }}>
       {/* Заголовок */}
       <div style={{ padding: "24px 0 18px", textAlign: "center" }}>
         <div style={{ fontSize: 32, fontWeight: 800, color: T.text }}>♟ Шахматные дебюты</div>
@@ -1490,8 +1497,8 @@ function Home({ progress, onSelect, theme: T }) {
         </div>
       </div>
 
-      {/* Сетка карточек 2 колонки */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+      {/* Сетка карточек — CSS-класс управляет колонками */}
+      <div className="opening-grid">
         {OPENINGS.map(o => {
           const varDone = o.variations.filter(v => {
             const vp = getVP(progress, o.id, v.id);
@@ -1499,15 +1506,7 @@ function Home({ progress, onSelect, theme: T }) {
           }).length;
           const varPct = Math.round((varDone / o.variations.length) * 100);
           return (
-            <button key={o.id} onClick={() => onSelect(o)} style={{
-              background: T.card, border: `1px solid ${T.border}`,
-              borderRadius: 14, padding: "12px 10px",
-              cursor: "pointer", textAlign: "center",
-              display: "flex", flexDirection: "column", alignItems: "center",
-              gap: 6, minHeight: 150,
-              boxShadow: "0 1px 4px rgba(0,0,0,0.10)",
-              transition: "border-color .15s, box-shadow .15s",
-            }}>
+            <button key={o.id} onClick={() => onSelect(o)} className="opening-card">
               <div style={{ fontSize: 36 }}>{o.emoji}</div>
               <div style={{ fontWeight: 700, fontSize: 13, color: T.text, lineHeight: 1.3 }}>{o.name}</div>
               <div style={{
@@ -1516,8 +1515,8 @@ function Home({ progress, onSelect, theme: T }) {
               }}>
                 {o.playAs === "white" ? "♔ Белые" : "♚ Чёрные"}
               </div>
-              <div style={{ width: "100%", marginTop: "auto" }}>
-                <div style={{ height: 3, background: T.border, borderRadius: 2, overflow: "hidden" }}>
+              <div className="opening-card__progress">
+                <div className="opening-card__bar-track">
                   <div style={{ width: varPct + "%", height: "100%", background: o.color, borderRadius: 2, transition: "width .4s" }} />
                 </div>
                 <div style={{ color: T.sub, fontSize: 11, marginTop: 3 }}>
@@ -1532,6 +1531,162 @@ function Home({ progress, onSelect, theme: T }) {
   );
 }
 
+// ═══════════════ CSS ═══════════════
+
+const APP_CSS = `
+  /* ── Утилиты ── */
+  *, *::before, *::after { box-sizing: border-box; }
+  .app-root { min-height: 100vh; font-family: 'Inter', system-ui, sans-serif; }
+
+  /* ── Home: сетка дебютов ── */
+  .opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .opening-card {
+    border-radius: 14px;
+    padding: 12px 10px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: 150px;
+    width: 100%;
+    box-shadow: 0 1px 4px rgba(0,0,0,.10);
+    transition: border-color .15s, box-shadow .15s;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .opening-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 3px 10px rgba(0,0,0,.18);
+  }
+  .opening-card__progress {
+    width: 100%;
+    margin-top: auto;
+  }
+  .opening-card__bar-track {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  /* ── OpeningDetail ── */
+  .detail-wrap {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 0 14px 32px;
+  }
+  .detail-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 0 12px;
+  }
+  .detail-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-main {
+    display: flex;
+    flex-direction: column;
+  }
+  .var-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .detail-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  /* ── LearnMode ── */
+  .nav-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  .move-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  /* ── QuizMode ── */
+  .quiz-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .quiz-finals {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 0;
+  }
+  .quiz-final-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  /* ── PracticeMode ── */
+  .practice-btns {
+    display: flex;
+    gap: 8px;
+  }
+  .practice-final-btns {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* ── Board wrapper ── */
+  .board-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ════════════════════════════════
+     ТЕЛЕФОН  ≤ 768px  — вертикально
+     ════════════════════════════════ */
+  @media (max-width: 768px) {
+    .opening-grid { grid-template-columns: 1fr; }
+    .detail-body  { flex-direction: column; gap: 0; }
+  }
+
+  /* ════════════════════════════════
+     ДЕСКТОП  ≥ 769px  — 2 колонки
+     ════════════════════════════════ */
+  @media (min-width: 769px) {
+    .opening-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .opening-card { min-height: 170px; }
+
+    .detail-wrap { max-width: 980px; }
+    .detail-body {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .detail-sidebar { position: sticky; top: 16px; }
+  }
+`;
+
 // ═══════════════ App ═══════════════
 
 export default function App() {
@@ -1541,8 +1696,17 @@ export default function App() {
 
   const T = THEMES[themeKey];
 
+  const cssVars = {
+    "--bg": T.bg, "--card": T.card, "--card2": T.card2,
+    "--border": T.border, "--text": T.text, "--sub": T.sub,
+    "--accent": T.accent, "--btn": T.btn,
+    background: T.bg,
+  };
+
   return (
-    <div style={{ minHeight: "100vh", background: T.bg, fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <>
+      <style>{APP_CSS}</style>
+      <div className="app-root" style={cssVars}>
       {/* Кнопка темы */}
       <div style={{ position: "fixed", top: 12, right: 14, zIndex: 100 }}>
         <button onClick={() => setThemeKey(k => k === "dark" ? "light" : "dark")} style={{
@@ -1564,6 +1728,7 @@ export default function App() {
       ) : (
         <Home progress={progress} onSelect={setSelected} theme={T} />
       )}
-    </div>
+      </div>
+    </>
   );
 }
