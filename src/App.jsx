@@ -353,20 +353,21 @@ const OPENINGS = [
     id: "sicilian", name: "Сицилианская защита", emoji: "🛡️",
     playAs: "black", color: "#9B59B6",
     desc: "1...c5 — асимметричная борьба за центр.",
+    idea: "Чёрные отвечают 1...c5, создавая асимметрию вместо зеркального e5. Борьба ведётся за поле d4 с фланга, а полуоткрытая линия c даёт богатую контригру ладьёй. Это самый популярный и изученный дебютный комплекс в шахматах.",
     variations: [
       {
         id: "najdorf", name: "Вариант Найдорфа", eco: "B90",
         moves: [
-          {san:"e4",color:"w",note:"Центр"},
-          {san:"c5",color:"b",note:"Сицилианская!"},
-          {san:"Nf3",color:"w",note:"Развитие"},
-          {san:"d6",color:"b",note:"Контроль e5"},
-          {san:"d4",color:"w",note:"Вскрытие центра"},
-          {san:"cxd4",color:"b",note:"Берём пешку"},
-          {san:"Nxd4",color:"w",note:"Конь в центр"},
-          {san:"Nf6",color:"b",note:"Атака на e4"},
-          {san:"Nc3",color:"w",note:"Защита"},
-          {san:"a6",color:"b",note:"Найдорф — готовим b5"},
+          {san:"e4",color:"w",note:"Занимаем центр, открываем диагонали для слонов"},
+          {san:"c5",color:"b",note:"⭐ Сицилианская — борьба за поле d4 с фланга"},
+          {san:"Nf3",color:"w",note:"Развиваем коня, атакуем пешку e5 в перспективе"},
+          {san:"d6",color:"b",note:"Контролируем поле e5, готовим развитие слона"},
+          {san:"d4",color:"w",note:"Вскрываем центр, завоёвываем инициативу"},
+          {san:"cxd4",color:"b",note:"⭐ Берём пешку, открываем линию c для ладьи"},
+          {san:"Nxd4",color:"w",note:"Конь занимает мощный центральный форпост"},
+          {san:"Nf6",color:"b",note:"Развиваем коня, нападаем на пешку e4"},
+          {san:"Nc3",color:"w",note:"Защищаем e4, развиваем коня на активную позицию"},
+          {san:"a6",color:"b",note:"⭐ Найдорф — блокируем Nb5, готовим b5 и Bb7"},
         ],
         quiz: [
           {q:"Цель 5...a6?", opts:["Ошибка","Блокируем Nb5 и готовим b5","Защита","Ладья"], ans:1, exp:"a6 предотвращает Nb5 и готовит b5."},
@@ -377,18 +378,18 @@ const OPENINGS = [
       {
         id: "dragon", name: "Вариант Дракона", eco: "B70",
         moves: [
-          {san:"e4",color:"w",note:"Центр"},
-          {san:"c5",color:"b",note:"Сицилианская"},
-          {san:"Nf3",color:"w",note:"Развитие"},
-          {san:"d6",color:"b",note:"Контроль"},
-          {san:"d4",color:"w",note:"Вскрытие"},
-          {san:"cxd4",color:"b",note:"Берём"},
-          {san:"Nxd4",color:"w",note:"Конь"},
-          {san:"Nf6",color:"b",note:"Атака e4"},
-          {san:"Nc3",color:"w",note:"Защита"},
-          {san:"g6",color:"b",note:"Дракон — фианкетто"},
-          {san:"Be3",color:"w",note:"Развитие"},
-          {san:"Bg7",color:"b",note:"Драконий слон!"},
+          {san:"e4",color:"w",note:"Занимаем центр, открываем диагонали для слонов"},
+          {san:"c5",color:"b",note:"Сицилианская — борьба за d4 с фланга"},
+          {san:"Nf3",color:"w",note:"Развиваем коня на активное поле"},
+          {san:"d6",color:"b",note:"Укрепляем e5, готовим развитие фигур"},
+          {san:"d4",color:"w",note:"Вскрываем центр, захватываем пространство"},
+          {san:"cxd4",color:"b",note:"Берём пешку, открываем линию c для ладьи"},
+          {san:"Nxd4",color:"w",note:"Конь занимает центральный форпост d4"},
+          {san:"Nf6",color:"b",note:"Атакуем пешку e4, развиваем коня"},
+          {san:"Nc3",color:"w",note:"Защищаем e4, развиваем коня"},
+          {san:"g6",color:"b",note:"⭐ Дракон — готовим фианкетто слона"},
+          {san:"Be3",color:"w",note:"Развиваем слона, контролируем d4"},
+          {san:"Bg7",color:"b",note:"⭐ Драконий слон давит по диагонали a1-h8"},
         ],
         quiz: [
           {q:"Почему Дракон?", opts:["Агрессивность","Пешки + Bg7 = дракон","Изобретатель","Случайно"], ans:1, exp:"Структура g6,f7,e5,d6 с Bg7 напоминает дракона."},
@@ -402,21 +403,22 @@ const OPENINGS = [
     id: "spanish", name: "Испанская партия", emoji: "🏰",
     playAs: "white", color: "#C0392B",
     desc: "3.Bb5 — давление на защитника e5.",
+    idea: "Белые на третьем ходу атакуют коня c6, который защищает пешку e5. Угроза Bxc6 с последующим Nxe5 создаёт постоянное давление, вынуждая чёрных к точной игре. Испанская — дебют позиционного превосходства, любимый оружие Карпова и Фишера.",
     variations: [
       {
         id: "closed", name: "Закрытый вариант", eco: "C84",
         moves: [
-          {san:"e4",color:"w",note:"Открытый дебют"},
-          {san:"e5",color:"b",note:"Ответ"},
-          {san:"Nf3",color:"w",note:"Атака e5"},
-          {san:"Nc6",color:"b",note:"Защита"},
-          {san:"Bb5",color:"w",note:"Испанская!"},
-          {san:"a6",color:"b",note:"Морфи — прогоняем"},
-          {san:"Ba4",color:"w",note:"Слон"},
-          {san:"Nf6",color:"b",note:"Развитие"},
-          {san:"O-O",color:"w",note:"Рокировка"},
-          {san:"Be7",color:"b",note:"Слон"},
-          {san:"Re1",color:"w",note:"Ладья — давление на e5"},
+          {san:"e4",color:"w",note:"⭐ Открытый дебют — центр и быстрое развитие"},
+          {san:"e5",color:"b",note:"Симметричный ответ, борьба за центр"},
+          {san:"Nf3",color:"w",note:"Атакуем пешку e5, развиваем коня"},
+          {san:"Nc6",color:"b",note:"Защищаем e5, развиваем коня на лучшее поле"},
+          {san:"Bb5",color:"w",note:"⭐ Испанская — давление на защитника e5"},
+          {san:"a6",color:"b",note:"⭐ Ход Морфи — прогоняем слона с b5"},
+          {san:"Ba4",color:"w",note:"Слон отступает, сохраняя давление на c6"},
+          {san:"Nf6",color:"b",note:"Развиваем коня, атакуем пешку e4"},
+          {san:"O-O",color:"w",note:"Рокируемся, готовим ладью к атаке по линии e"},
+          {san:"Be7",color:"b",note:"Готовим рокировку, развиваем слона"},
+          {san:"Re1",color:"w",note:"⭐ Ладья давит на e5 по полуоткрытой линии"},
         ],
         quiz: [
           {q:"Bb5 — смысл?", opts:["Атака","Давление на Nc6, защищающего e5","Развитие","Рокировка"], ans:1, exp:"Bb5 угрожает взять Nc6 и выиграть e5."},
@@ -427,19 +429,19 @@ const OPENINGS = [
       {
         id: "berlin", name: "Берлинская стена", eco: "C65",
         moves: [
-          {san:"e4",color:"w",note:"Центр"},
-          {san:"e5",color:"b",note:"Ответ"},
-          {san:"Nf3",color:"w",note:"Атака"},
-          {san:"Nc6",color:"b",note:"Защита"},
-          {san:"Bb5",color:"w",note:"Испанская"},
-          {san:"Nf6",color:"b",note:"Берлин!"},
-          {san:"O-O",color:"w",note:"Рокировка"},
-          {san:"Nxe4",color:"b",note:"Берём пешку"},
-          {san:"d4",color:"w",note:"Контратака"},
-          {san:"Nd6",color:"b",note:"Конь"},
-          {san:"Bxc6",color:"w",note:"Обмен"},
-          {san:"dxc6",color:"b",note:"Берём"},
-          {san:"dxe5",color:"w",note:"Пешка"},
+          {san:"e4",color:"w",note:"Открываем центр, начинаем открытую игру"},
+          {san:"e5",color:"b",note:"Занимаем центр, ограничиваем коня f3"},
+          {san:"Nf3",color:"w",note:"Атакуем пешку e5, развиваем коня"},
+          {san:"Nc6",color:"b",note:"Защищаем e5 конём на лучшее поле"},
+          {san:"Bb5",color:"w",note:"Испанская — давление на защитника e5"},
+          {san:"Nf6",color:"b",note:"⭐ Берлин — конь атакует e4 вместо a6"},
+          {san:"O-O",color:"w",note:"Рокируемся, готовим Re1"},
+          {san:"Nxe4",color:"b",note:"⭐ Берём пешку e4, принимаем вызов"},
+          {san:"d4",color:"w",note:"Контратакуем центр, отыгрываем материал"},
+          {san:"Nd6",color:"b",note:"Отступаем конём, защищаем e5"},
+          {san:"Bxc6",color:"w",note:"Разрушаем пешечную структуру чёрных"},
+          {san:"dxc6",color:"b",note:"Берём слоном, принимаем сдвоенные пешки"},
+          {san:"dxe5",color:"w",note:"Выигрываем пешку e5"},
         ],
         quiz: [
           {q:"Почему Берлин — стена?", opts:["Нет смысла","Надёжная структура после размена ферзей","Случайно","Имя"], ans:1, exp:"После Qxd8 позиция черных почти неприступна."},
@@ -453,21 +455,22 @@ const OPENINGS = [
     id: "london", name: "Лондонская система", emoji: "🎭",
     playAs: "white", color: "#8E44AD",
     desc: "1.d4 2.Nf3 3.Bf4 — надёжность без теории.",
+    idea: "Белые строят надёжную пирамидальную структуру: d4, Nf3, Bf4, e3, Nbd2. Система универсальна — работает против большинства ответов чёрных без глубокого знания теории. Любимый дебют Магнуса Карлсена на быстрых шахматах.",
     variations: [
       {
         id: "classical", name: "Классическая", eco: "D02",
         moves: [
-          {san:"d4",color:"w",note:"Начало"},
-          {san:"d5",color:"b",note:"Центр"},
-          {san:"Nf3",color:"w",note:"Развитие"},
-          {san:"Nf6",color:"b",note:"Развитие"},
-          {san:"Bf4",color:"w",note:"Лондонская!"},
-          {san:"e6",color:"b",note:"Структура"},
-          {san:"e3",color:"w",note:"Укрепление"},
-          {san:"Bd6",color:"b",note:"Атакуем слона"},
-          {san:"Bg3",color:"w",note:"Отступление"},
-          {san:"O-O",color:"b",note:"Рокировка"},
-          {san:"Nbd2",color:"w",note:"Развитие"},
+          {san:"d4",color:"w",note:"Захватываем центр, открываем диагонали"},
+          {san:"d5",color:"b",note:"Симметрично занимаем центр"},
+          {san:"Nf3",color:"w",note:"Развиваем коня на лучшее поле"},
+          {san:"Nf6",color:"b",note:"Развиваем коня, атакуем d4"},
+          {san:"Bf4",color:"w",note:"⭐ Лондонский слон — ключевой ход системы"},
+          {san:"e6",color:"b",note:"Строим надёжную пешечную структуру"},
+          {san:"e3",color:"w",note:"Укрепляем центр, открываем диагональ для Bd3"},
+          {san:"Bd6",color:"b",note:"Атакуем слона f4, предлагая размен"},
+          {san:"Bg3",color:"w",note:"Слон отступает, сохраняя позицию"},
+          {san:"O-O",color:"b",note:"Рокируемся, завершаем развитие"},
+          {san:"Nbd2",color:"w",note:"⭐ Конь на d2 — гибкая позиция для манёвра"},
         ],
         quiz: [
           {q:"Ключевой ход Лондона?", opts:["d4","3.Bf4 — лондонский слон","e3","Nbd2"], ans:1, exp:"Bf4 — основа лондонской системы."},
@@ -478,17 +481,17 @@ const OPENINGS = [
       {
         id: "vs_kid", name: "Против КИЗ", eco: "A45",
         moves: [
-          {san:"d4",color:"w",note:"Начало"},
-          {san:"Nf6",color:"b",note:"Развитие"},
-          {san:"Nf3",color:"w",note:"Развитие"},
-          {san:"g6",color:"b",note:"КИЗ setup"},
-          {san:"Bf4",color:"w",note:"Лондон против КИЗ!"},
-          {san:"Bg7",color:"b",note:"Слон"},
-          {san:"e3",color:"w",note:"Укрепление"},
-          {san:"d6",color:"b",note:"Структура"},
-          {san:"h3",color:"w",note:"Блокируем Bg4"},
-          {san:"O-O",color:"b",note:"Рокировка"},
-          {san:"Be2",color:"w",note:"Развитие"},
+          {san:"d4",color:"w",note:"Захватываем центр, начинаем лондонскую"},
+          {san:"Nf6",color:"b",note:"Развиваем коня, готовим КИЗ структуру"},
+          {san:"Nf3",color:"w",note:"Развиваем коня, атакуем центр"},
+          {san:"g6",color:"b",note:"Готовим фианкетто — КИЗ структура"},
+          {san:"Bf4",color:"w",note:"⭐ Лондон против КИЗ — избегаем острой теории"},
+          {san:"Bg7",color:"b",note:"⭐ Фианкетто слона — сила КИЗ"},
+          {san:"e3",color:"w",note:"Укрепляем центр, готовим Bd3"},
+          {san:"d6",color:"b",note:"Строим КИЗ структуру d6-e5"},
+          {san:"h3",color:"w",note:"⭐ Блокируем Bg4, не даём связать коня f3"},
+          {san:"O-O",color:"b",note:"Рокируемся, завершаем развитие"},
+          {san:"Be2",color:"w",note:"Развиваем слона, готовимся к рокировке"},
         ],
         quiz: [
           {q:"h3 зачем?", opts:["Атака","Блокируем Bg4 — не свяжут Nf3","Защита","Ошибка"], ans:1, exp:"h3 предотвращает Bg4 и связку коня f3."},
@@ -502,23 +505,24 @@ const OPENINGS = [
     id: "catalan", name: "Каталонское начало", emoji: "🏔️",
     playAs: "white", color: "#3498DB",
     desc: "3.g3 Bg2 — каталонский слон давит на ферзевый фланг.",
+    idea: "Белые сочетают ферзевый гамбит с фианкетто слона на g2. Слон g2 давит по длинной диагонали a8-h1, создавая постоянное давление на ферзевый фланг чёрных. Каталон — любимый дебют Крамника и Карлсена в классических партиях.",
     variations: [
       {
         id: "open", name: "Открытый (dxc4)", eco: "E04",
         moves: [
-          {san:"d4",color:"w",note:"Начало"},
-          {san:"d5",color:"b",note:"Центр"},
-          {san:"c4",color:"w",note:"Гамбит"},
-          {san:"e6",color:"b",note:"Защита"},
-          {san:"Nf3",color:"w",note:"Развитие"},
-          {san:"Nf6",color:"b",note:"Развитие"},
-          {san:"g3",color:"w",note:"Каталон!"},
-          {san:"Be7",color:"b",note:"Развитие"},
-          {san:"Bg2",color:"w",note:"Каталонский слон!"},
-          {san:"O-O",color:"b",note:"Рокировка"},
-          {san:"O-O",color:"w",note:"Рокировка"},
-          {san:"dxc4",color:"b",note:"Открытый — берём!"},
-          {san:"Qc2",color:"w",note:"Атака c4"},
+          {san:"d4",color:"w",note:"Захватываем центр, начинаем каталон"},
+          {san:"d5",color:"b",note:"Симметрично занимаем центр"},
+          {san:"c4",color:"w",note:"Ферзевый гамбит — атакуем пешку d5"},
+          {san:"e6",color:"b",note:"Защищаем d5, строим надёжную структуру"},
+          {san:"Nf3",color:"w",note:"Развиваем коня на лучшее центральное поле"},
+          {san:"Nf6",color:"b",note:"Развиваем коня, атакуем центр"},
+          {san:"g3",color:"w",note:"⭐ Каталон — готовим фианкетто слона"},
+          {san:"Be7",color:"b",note:"Развиваем слона, готовим рокировку"},
+          {san:"Bg2",color:"w",note:"⭐ Каталонский слон — давит по диагонали a8-h1"},
+          {san:"O-O",color:"b",note:"Рокируемся, убираем короля в безопасность"},
+          {san:"O-O",color:"w",note:"Рокируемся, слон g2 активирован"},
+          {san:"dxc4",color:"b",note:"⭐ Открытый вариант — берём пешку c4"},
+          {san:"Qc2",color:"w",note:"Атакуем пешку c4, готовим её возврат"},
         ],
         quiz: [
           {q:"Каталонский слон?", opts:["Любой","Слон g2 — давит по a8-h1","c1 слон","Ферзь"], ans:1, exp:"Слон g2 давит на ферзевый фланг по длинной диагонали."},
@@ -529,19 +533,19 @@ const OPENINGS = [
       {
         id: "closed", name: "Закрытый (c6)", eco: "E06",
         moves: [
-          {san:"d4",color:"w",note:"Начало"},
-          {san:"d5",color:"b",note:"Центр"},
-          {san:"c4",color:"w",note:"Гамбит"},
-          {san:"e6",color:"b",note:"Защита"},
-          {san:"Nf3",color:"w",note:"Развитие"},
-          {san:"Nf6",color:"b",note:"Развитие"},
-          {san:"g3",color:"w",note:"Каталон"},
-          {san:"Be7",color:"b",note:"Слон"},
-          {san:"Bg2",color:"w",note:"Слон g2"},
-          {san:"O-O",color:"b",note:"Рокировка"},
-          {san:"O-O",color:"w",note:"Рокировка"},
-          {san:"c6",color:"b",note:"Закрытый — надёжно!"},
-          {san:"Qc2",color:"w",note:"Давление"},
+          {san:"d4",color:"w",note:"Захватываем центр, начинаем ферзевый дебют"},
+          {san:"d5",color:"b",note:"Отвечаем на центр, держим поле e4"},
+          {san:"c4",color:"w",note:"Ферзевый гамбит — атака на d5"},
+          {san:"e6",color:"b",note:"Укрепляем d5, строим структуру"},
+          {san:"Nf3",color:"w",note:"Развиваем коня на лучшее поле"},
+          {san:"Nf6",color:"b",note:"Развиваем коня, контролируем центр"},
+          {san:"g3",color:"w",note:"Каталон — готовим фианкетто"},
+          {san:"Be7",color:"b",note:"Развиваем слона, готовим рокировку"},
+          {san:"Bg2",color:"w",note:"Каталонский слон — давление по диагонали"},
+          {san:"O-O",color:"b",note:"Рокируемся, завершаем развитие"},
+          {san:"O-O",color:"w",note:"Рокируемся, слон g2 активен"},
+          {san:"c6",color:"b",note:"⭐ Закрытый вариант — укрепляем d5 без потери c4"},
+          {san:"Qc2",color:"w",note:"Давление на d5 и всю позицию чёрных"},
         ],
         quiz: [
           {q:"c6 — идея?", opts:["Ошибка","Надёжная защита без потери пешки","Атака","Ладья"], ans:1, exp:"c6 укрепляет d5, не отдаёт пешку c4."},
@@ -555,6 +559,7 @@ const OPENINGS = [
     id: "grunfeld", name: "Защита Грюнфельда", emoji: "🐉",
     playAs: "black", color: "#27AE60",
     desc: "1...d5 против 1.d4 — отдаём центр и разрушаем его слоном g7.",
+    idea: "Чёрные сознательно уступают центр белым, а затем атакуют его гиперсовременными методами. Слон g7 по диагонали a1-h8 давит на центральные пешки, а удары c5 и e5 разрушают позицию белых. Это дебют Каспарова — он использовал его во всех матчах с Карповым.",
     variations: [
       {
         id: "exchange", name: "Разменный вариант", eco: "D85",
@@ -608,6 +613,7 @@ const OPENINGS = [
     id: "kid", name: "Старо-Индийская защита", emoji: "⚡",
     playAs: "black", color: "#E67E22",
     desc: "1...g6 2...Bg7 — крепость и атака на королевском фланге.",
+    idea: "Чёрные строят крепкую позицию с фианкетто слона g7, а затем начинают штурм королевского фланга. Пока белые атакуют на ферзевом, чёрные бьют по королю: f5-f4, g5-h5. Каспаров, Фишер и Бронштейн сделали СЗИ символом динамичной контригры.",
     variations: [
       {
         id: "classical_kid", name: "Классическая система", eco: "E92",
@@ -666,6 +672,7 @@ const OPENINGS = [
     id: "english", name: "Английское начало", emoji: "🎩",
     playAs: "white", color: "#1ABC9C",
     desc: "1.c4 — фланговый дебют, гибкий контроль центра.",
+    idea: "Белые начинают с фланга, избегая прямого столкновения в центре. c4 контролирует d5 косвенно, сохраняя гибкость. Английское часто транспонирует в другие дебюты — ферзевый гамбит, нимцович. Ботвинник, Карпов и Крамник применяли его как универсальное оружие.",
     variations: [
       {
         id: "symmetric", name: "Симметричный вариант", eco: "A30",
@@ -719,6 +726,7 @@ const OPENINGS = [
     id: "french", name: "Французская защита", emoji: "🥐",
     playAs: "black", color: "#F39C12",
     desc: "1...e6 — надёжная структура с контратакой d5.",
+    idea: "Чёрные строят надёжную крепость e6-d5 и ждут момента для контратаки c5. Структура прочна, но ценой ограниченного слона c8. Французская — выбор позиционных игроков, любивших её Петросян, Карпов и Корчной.",
     variations: [
       {
         id: "tarrasch", name: "Тарраш", eco: "C05",
@@ -776,6 +784,7 @@ const OPENINGS = [
     id: "nimzo", name: "Защита Нимцовича", emoji: "♝",
     playAs: "black", color: "#2980B9",
     desc: "3...Bb4 — слон берёт коня, стратегическая битва за центр.",
+    idea: "Чёрные пришпиливают коня c3 слоном b4, угрожая сдвоить пешки белых после Bxc3. Это чисто стратегический дебют без прямых атак — борьба за слабые поля. Нимцович изобрёл его как часть «гиперсовременной» революции в шахматах 1920-х годов.",
     variations: [
       {
         id: "rubinstein", name: "Система Рубинштейна", eco: "E40",
@@ -835,6 +844,7 @@ const OPENINGS = [
     id: "chigorin", name: "Защита Чигорина", emoji: "♞",
     playAs: "black", color: "#E74C3C",
     desc: "1...Nc6 — конь вместо пешки, идеи Михаила Чигорина.",
+    idea: "Вместо стандартного d5 чёрные выводят коня c6, создавая нестандартную динамичную игру. Конь давит на d4 и готовит e5, но ограничивает продвижение c5. Михаил Чигорин, предтеча динамических шахмат, разработал этот дебют в конце XIX века.",
     variations: [
       {
         id: "main_bg4", name: "Основной (3.Nf3 Bg4)", eco: "D07",
@@ -1385,6 +1395,17 @@ function OpeningDetail({ opening, progress, onProgress, onBack, theme: T }) {
         </div>
       </div>
 
+      {/* Идея дебюта */}
+      {opening.idea && (
+        <div style={{
+          background: T.card2, borderRadius: 10, padding: "12px 14px",
+          marginBottom: 14, borderLeft: `3px solid ${opening.color}`,
+        }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: opening.color, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.5px" }}>Главная идея</div>
+          <div style={{ color: T.text, fontSize: 13, lineHeight: 1.6 }}>{opening.idea}</div>
+        </div>
+      )}
+
       {/* Список вариантов */}
       <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 16 }}>
         {opening.variations.map(v => {
@@ -1469,8 +1490,8 @@ function Home({ progress, onSelect, theme: T }) {
         </div>
       </div>
 
-      {/* Карточки */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      {/* Сетка карточек 2 колонки */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
         {OPENINGS.map(o => {
           const varDone = o.variations.filter(v => {
             const vp = getVP(progress, o.id, v.id);
@@ -1480,27 +1501,27 @@ function Home({ progress, onSelect, theme: T }) {
           return (
             <button key={o.id} onClick={() => onSelect(o)} style={{
               background: T.card, border: `1px solid ${T.border}`,
-              borderRadius: 14, padding: "16px", cursor: "pointer",
-              textAlign: "left", display: "flex", gap: 14, alignItems: "center",
-              transition: "border-color .15s",
+              borderRadius: 14, padding: "12px 10px",
+              cursor: "pointer", textAlign: "center",
+              display: "flex", flexDirection: "column", alignItems: "center",
+              gap: 6, minHeight: 150,
+              boxShadow: "0 1px 4px rgba(0,0,0,0.10)",
+              transition: "border-color .15s, box-shadow .15s",
             }}>
-              <div style={{ fontSize: 40, flexShrink: 0 }}>{o.emoji}</div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontWeight: 700, fontSize: 16, color: T.text }}>{o.name}</div>
-                <div style={{ color: T.sub, fontSize: 13, marginTop: 2 }}>{o.desc}</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
-                  <div style={{ flex: 1, height: 4, background: T.border, borderRadius: 2, overflow: "hidden" }}>
-                    <div style={{ width: varPct + "%", height: "100%", background: o.color, borderRadius: 2 }} />
-                  </div>
-                  <span style={{ color: T.sub, fontSize: 12, flexShrink: 0 }}>
-                    {varDone}/{o.variations.length}
-                  </span>
+              <div style={{ fontSize: 36 }}>{o.emoji}</div>
+              <div style={{ fontWeight: 700, fontSize: 13, color: T.text, lineHeight: 1.3 }}>{o.name}</div>
+              <div style={{
+                padding: "2px 7px", borderRadius: 8,
+                background: o.color + "22", color: o.color, fontSize: 11, fontWeight: 600,
+              }}>
+                {o.playAs === "white" ? "♔ Белые" : "♚ Чёрные"}
+              </div>
+              <div style={{ width: "100%", marginTop: "auto" }}>
+                <div style={{ height: 3, background: T.border, borderRadius: 2, overflow: "hidden" }}>
+                  <div style={{ width: varPct + "%", height: "100%", background: o.color, borderRadius: 2, transition: "width .4s" }} />
                 </div>
-                <div style={{
-                  display: "inline-block", marginTop: 6, padding: "2px 8px", borderRadius: 10,
-                  background: o.color + "22", color: o.color, fontSize: 11, fontWeight: 600,
-                }}>
-                  За {o.playAs === "white" ? "белых ⬜" : "чёрных ⬛"}
+                <div style={{ color: T.sub, fontSize: 11, marginTop: 3 }}>
+                  {varDone}/{o.variations.length} вар.
                 </div>
               </div>
             </button>
